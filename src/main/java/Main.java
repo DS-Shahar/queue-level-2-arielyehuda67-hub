@@ -1,14 +1,5 @@
-public class TreeExam {
-
-    // הפעולה הראשית שתריץ את הבדיקות
-    public static void main(String[] args) {
-        // בניית עץ לדוגמה:
-        //        2 (זוגי, בנים זוגיים - מיוחד)
-        //       /  \
-        //      4    6 (זוגי, אין בנים - מיוחד)
-        //     /
-        //    5 (אי זוגי - לא מיוחד)
-        
+    public static void main(String[] args) 
+    {
         BinNode<Integer> root = new BinNode<>(2);
         root.setLeft(new BinNode<>(4));
         root.setRight(new BinNode<>(6));
@@ -34,7 +25,8 @@ public class TreeExam {
         System.out.println("4. האם כל הצמתים בעץ מיוחדים? " + all);
     }
 
-    public static boolean isSpecial(BinNode<Integer> node) {
+    public static boolean isSpecial(BinNode<Integer> node) 
+    {
         if (node == null) return false;
 
         // תנאי 1
@@ -50,38 +42,44 @@ public class TreeExam {
     }
 
     // 1
-    public static void printSpecial(BinNode<Integer> tr) {
-        if (tr != null) {
-            if (isSpecial(tr)) {
-                System.out.print(tr.getValue() + " ");
+    public static void printSpecial(BinNode<Integer> t) 
+    {
+        if (t != null) 
+        {
+            if (isSpecial(t)) 
+            {
+                System.out.print(t.getValue() + " ");
             }
-            printSpecial(tr.getLeft());
-            printSpecial(tr.getRight());
+            printSpecial(t.getLeft());
+            printSpecial(t.getRight());
         }
     }
 
     // 2
-    public static int countSpecial(BinNode<Integer> tr) {
-        if (tr == null) return 0;
+    public static int countSpecial(BinNode<Integer> t) 
+    {
+        if (t == null) return 0;
         
-        int current = isSpecial(tr) ? 1 : 0;
-        return current + countSpecial(tr.getLeft()) + countSpecial(tr.getRight());
+        int current = isSpecial(t) ? 1 : 0;
+        return current + countSpecial(t.getLeft()) + countSpecial(t.getRight());
     }
 
     // 3
-    public static boolean existsSpecial(BinNode<Integer> tr) {
-        if (tr == null) return false;
-        if (isSpecial(tr)) return true;
+    public static boolean existsSpecial(BinNode<Integer> t) 
+    {
+        if (t == null) return false;
+        if (isSpecial(t)) return true;
         
-        return existsSpecial(tr.getLeft()) || existsSpecial(tr.getRight());
+        return existsSpecial(t.getLeft()) || existsSpecial(t.getRight());
     }
 
     // 4
-    public static boolean allAreSpecial(BinNode<Integer> tr) {
-        if (tr == null) return true;
+    public static boolean allAreSpecial(BinNode<Integer> t) 
+    {
+        if (t == null) return true;
         
-        if (!isSpecial(tr)) return false;
+        if (!isSpecial(t)) return false;
         
-        return allAreSpecial(tr.getLeft()) && allAreSpecial(tr.getRight());
+        return allAreSpecial(t.getLeft()) && allAreSpecial(t.getRight());
     }
 }
